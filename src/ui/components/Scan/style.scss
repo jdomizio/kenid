@@ -1,0 +1,25 @@
+@import '../../_config.scss';
+
+.ken-id-scan {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .__main {
+        font-size: 4rem;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+.--good {
+    color: $ok-color;
+    font-weight: 600;
+}
+
+.--bad {
+    color: $cancel-color;
+    font-weight: 600;
+}

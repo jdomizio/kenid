@@ -1,0 +1,47 @@
+# appveyor build configuration
+# http://www.appveyor.com/docs/appveyor-yml
+version: "1.0.{build}"
+
+os: Visual Studio 2015
+
+branches:
+  only:
+    - master
+
+cache:
+  - node_modules
+  - "%LOCALAPPDATA%\\Yarn"
+  - "%USERPROFILE%\\.electron"
+
+init:
+  - git config --global core.autocrlf input
+
+platform:
+  - x64
+
+install:
+  - cmd: SET PATH=C:\Program Files (x86)\MSBuild\14.0\bin\;%PATH%
+  - cmd: SET PATH=C:\python27;%PATH%
+  - ps: Install-Product node 6 x64
+  - yarn
+  - yarn run build
+  - yarn run dist
+
+artifacts:
+  - path: dist
+    name: kenid
+
+deploy:
+    # Azure Blob storage deployment provider settings
+  - provider: AzureBlob
+    storage_account_name:
+      secure: PPFVLwnnR01SvG94zFDqkQ==
+    storage_access_key:
+      secure: HYSztZWiqJqqA+siP6W5eCOwWlvqlMldbRdFLCnj9D4bUlVJTFrcFF3mxCLmw7gdIIWTrf2keQLsQwNYXQUvN2pgI+CYu1KA2hsyn2EewEgrt22rG0mVAmLzNn17rNRb
+    container: kenid-deploy
+    artifact: kenid.zip
+
+# disable build and test phases?
+build: off
+test: off
+max_jobs: 1

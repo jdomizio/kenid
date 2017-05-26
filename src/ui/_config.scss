@@ -1,0 +1,99 @@
+@import './_colors.scss';
+
+@mixin bgColorTransition() {
+    transition: background-color .25s ease, color 0s ease;
+
+    &:hover {
+        transition: background-color 0s, color 0s;
+    }
+}
+
+.card {
+    border-radius: .5rem;
+    margin: 1rem;
+    background-color: $card-color;
+    padding: 1rem 2rem;
+    width: calc(100vw - 20rem);
+    border: 1rem solid transparent;
+    display: flex;
+    flex-direction: row;
+
+    .__label {
+        line-height: 4rem;
+    }
+
+    .__section-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .__section {
+        display: flex;
+        flex-direction: row;
+        background-color: $card-color;
+        margin: .5rem 0;
+        padding: .5rem;
+        & > *:first-child {
+            font-weight: 600;
+            width: 20rem;
+        }
+    }
+
+    .__actions {
+        flex: 1 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        button {
+            flex: 1 0;
+            margin: 0 0 0 2rem;
+        }
+    }
+
+    &.--bad-result {
+        border: 1rem solid $cancel-color;
+    }
+
+    &.--good-result {
+        border: 1rem solid $ok-color;
+    }
+}
+
+.button {
+    padding: 1rem;
+    border: none;
+    color: $app-font-color;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: .5rem;
+
+    @include bgColorTransition();
+
+    &.--full {
+        width: 100%;
+    }
+}
+
+.yes-button {
+    @extend .button;
+    background-color: $ok-color;
+
+    &:hover {
+        background-color: scale_color($ok-color, $lightness: 20%);
+    }
+}
+
+.no-button {
+    @extend .button;
+    background-color: $cancel-color;
+
+    &:hover {
+        background-color: scale_color($cancel-color, $lightness: 20%);
+    }
+}
+
+.action-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
