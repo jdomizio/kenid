@@ -1,5 +1,5 @@
 const winston = require('winston');
-const appConfig = require('../application.config.json');
+const appConfig = require('../config');
 require('winston-daily-rotate-file');
 
 if (process.env.NODE_ENV === 'production') {
