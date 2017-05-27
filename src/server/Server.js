@@ -95,8 +95,10 @@ module.exports = class Server {
         logger.debug('Removing electron menu...');
         this.win.setMenu(null);
 
-        logger.debug('Maximizing window...');
-        this.win.maximize();
+        if (process.env.NODE_ENV !== 'production') {
+            logger.debug('Maximizing window...');
+            this.win.maximize();
+        }
     }
 
     onScan(data) {
