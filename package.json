@@ -1,6 +1,6 @@
 {
   "name": "ken-id",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An application to help scan potentially fraudulent licenses",
   "main": "index.js",
   "author": "Jason Domizio",
